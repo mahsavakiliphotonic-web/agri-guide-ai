@@ -89,87 +89,80 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
           filteredCases.map((item) => (
             <motion.div 
               key={item.id}
-              initial={{ opacity: 0, y: 10 }}
+              layout
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => onSelectCase(item.id)}
-              className="folder-card bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm cursor-pointer relative overflow-hidden group"
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="folder-card bg-white rounded-[2rem] border border-slate-100 shadow-sm relative overflow-hidden group"
             >
-              {/* Status Indicator */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className={`p-2 rounded-xl ${
-                    item.status === 'resolved' ? 'bg-emerald-50 text-emerald-600' : 
-                    item.status === 'active' ? 'bg-amber-50 text-amber-600 animate-pulse' : 
-                    'bg-slate-50 text-slate-600'
-                  }`}>
-                    {item.status === 'resolved' ? <CheckCircle size={16} /> : <Timer size={16} />}
-                  </div>
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${
-                    item.status === 'resolved' ? 'text-emerald-600' : 
-                    item.status === 'active' ? 'text-amber-600' : 
-                    'text-slate-500'
-                  }`}>
-                    {item.status}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 z-20">
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      startRename(e, item.id, item.name);
-                    }}
-                    className="p-3 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
-                    title="Rename"
-                  >
-                    <Pencil size={16} />
-                  </button>
-                  <button 
-                    onClick={(e) => { 
-                      e.stopPropagation(); 
-                      e.preventDefault();
-                      if(confirm('Are you sure you want to permanently delete this consultation and all its messages?')) {
-                        onDeleteCase(item.id); 
-                      }
-                    }}
-                    className="p-3 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
-                    title="Delete"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter ml-2 hidden sm:block">
-                    {new Date(item.lastUpdatedAt).toLocaleDateString()}
-                  </span>
-                </div>
+              {/* Action Bar (Isolated Zone) */}
+              <div className="absolute top-4 right-4 z-30 flex items-center gap-1">
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    startRename(e, item.id, item.name);
+                  }}
+                  className="p-3 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 bg-white/80 backdrop-blur-sm shadow-sm"
+                  title="Rename"
+                >
+                  <Pencil size={16} />
+                </button>
+                <button 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    if(confirm('Are you sure you want to permanently delete this consultation?')) {
+                      onDeleteCase(item.id); 
+                    }
+                  }}
+                  className="p-3 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 bg-white/80 backdrop-blur-sm shadow-sm"
+                  title="Delete"
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
 
-              {/* Content */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
-                  <Folder size={24} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  {renamingId === item.id ? (
-                    <input 
-                      autoFocus
-                      className="w-full bg-slate-100 border-none rounded-lg px-2 py-1 text-lg font-black text-slate-800 outline-none ring-2 ring-emerald-500/20"
-                      value={newName}
-                      onChange={(e) => setNewName(e.target.value)}
-                      onBlur={() => handleRenameSubmit(item.id)}
-                      onKeyDown={(e) => e.key === 'Enter' && handleRenameSubmit(item.id)}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  ) : (
-                    <h3 className="font-black text-slate-800 text-lg leading-tight truncate">{item.name}</h3>
-                  )}
-                  <div className="flex items-center gap-3 mt-1.5">
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-slate-500">
-                      <MessageSquare size={12} className="text-emerald-500" />
-                      {item.messages.length} interactions
+              {/* Main Clickable Area */}
+              <div 
+                onClick={() => onSelectCase(item.id)}
+                className="p-6 cursor-pointer active:bg-slate-50 transition-colors"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className={cn(
+                      "w-12 h-12 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500",
+                      item.status === 'active' ? "bg-emerald-100 text-emerald-600" : "bg-slate-100 text-slate-400"
+                    )}>
+                      <Folder size={24} />
                     </div>
+                    <div>
+                      {renamingId === item.id ? (
+                        <input 
+                          autoFocus
+                          className="text-lg font-black bg-slate-50 border-none rounded-lg px-2 py-1 outline-emerald-500"
+                          value={newName}
+                          onChange={(e) => setNewName(e.target.value)}
+                          onBlur={() => saveRename(item.id)}
+                          onKeyDown={(e) => e.key === 'Enter' && saveRename(item.id)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <h3 className="text-lg font-black text-slate-800 tracking-tight group-hover:text-emerald-600 transition-colors">
+                          {item.name}
+                        </h3>
+                      )}
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                        {item.messages.length} Messages • {new Date(item.lastUpdatedAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 uppercase">
+                      {item.status}
+                    </span>
                     {item.crop && (
-                      <>
                         <span className="text-slate-300">•</span>
                         <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">{item.crop}</div>
                       </>
