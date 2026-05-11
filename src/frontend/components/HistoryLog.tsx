@@ -163,6 +163,7 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
                       {item.status}
                     </span>
                     {item.crop && (
+                      <>
                         <span className="text-slate-300">•</span>
                         <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">{item.crop}</div>
                       </>
