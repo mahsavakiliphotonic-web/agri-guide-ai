@@ -139,9 +139,8 @@ export default function Home() {
 
   // Save cases to localStorage whenever they change
   useEffect(() => {
-    if (cases.length > 0) {
-      localStorage.setItem("agri_guide_cases", JSON.stringify(cases));
-    }
+    // We remove the length check so that deleting the last item actually works!
+    localStorage.setItem("agri_guide_cases", JSON.stringify(cases));
   }, [cases]);
 
   // Sync messages to current case
@@ -184,11 +183,7 @@ export default function Home() {
   };
 
   const handleDeleteCase = (id: string) => {
-    setCases(prev => {
-      const updated = prev.filter(c => c.id !== id);
-      localStorage.setItem("agri_guide_cases", JSON.stringify(updated));
-      return updated;
-    });
+    setCases(prev => prev.filter(c => c.id !== id));
     
     if (currentCaseId === id) {
       setCurrentCaseId(null);
@@ -276,6 +271,7 @@ export default function Home() {
         };
         setCases(prev => [newCase, ...prev]);
         setCurrentCaseId(newId);
+        setMessages(newCase.messages);
       }
 
     } catch (err) {
@@ -331,30 +327,36 @@ export default function Home() {
         content: data.answer
       };
 
-      setMessages(prev => [...prev, botMsg]);
-
-      // If no current case exists, create one now
+      // If no current case exists, create one now with ALL messages included
       if (!currentCaseId) {
         const newId = Date.now().toString();
         const firstWords = text.split(" ").slice(0, 3).join(" ");
-        const caseName = text ? (firstWords.length > 20 ? firstWords.substring(0, 20) + "..." : firstWords) : "Image Inquiry";
+        const caseName = text ? (firstWords.length > 20 ? firstWords.substring(0, 20) + "..." : firstWords) : "Analysis";
         
-        setCases(prev => [{
+        const newUserMsg: Message = { 
+          id: userMsgId, 
+          role: "user", 
+          content: text || "Plant Inquiry",
+          image: imagePreviewUrl
+        };
+
+        const newCase: Case = {
           id: newId,
           name: caseName,
-          messages: [...messages, { 
-            id: userMsgId, 
-            role: "user", 
-            content: text || "Image Analysis",
-            image: imagePreviewUrl
-          }, botMsg],
+          messages: [...messages, newUserMsg, botMsg],
           createdAt: Date.now(),
           lastUpdatedAt: Date.now(),
           status: "active"
-        }, ...prev]);
+        };
+        
+        setCases(prev => [newCase, ...prev]);
         setCurrentCaseId(newId);
+        setMessages(newCase.messages);
       } else {
-        // If it's a "New Consultation", try to give it a better name based on the first message
+        // If case exists, just update messages as usual
+        setMessages(prev => [...prev, botMsg]);
+        
+        // Auto-rename if it was a "New Consultation"
         setCases(prev => prev.map(c => {
           if (c.id === currentCaseId && c.name === "New Consultation") {
             const firstWords = text.split(" ").slice(0, 3).join(" ");
