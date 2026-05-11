@@ -114,9 +114,12 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
                     {item.status}
                   </span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 z-20">
                   <button 
-                    onClick={(e) => startRename(e, item.id, item.name)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      startRename(e, item.id, item.name);
+                    }}
                     className="p-3 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
                     title="Rename"
                   >
@@ -126,7 +129,7 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
                     onClick={(e) => { 
                       e.stopPropagation(); 
                       e.preventDefault();
-                      if(confirm('Delete this folder and all its messages?')) {
+                      if(confirm('Are you sure you want to permanently delete this consultation and all its messages?')) {
                         onDeleteCase(item.id); 
                       }
                     }}

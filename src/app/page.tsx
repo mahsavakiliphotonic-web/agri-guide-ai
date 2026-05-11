@@ -178,7 +178,10 @@ export default function Home() {
     if (selected) {
       setCurrentCaseId(caseId);
       setMessages(selected.messages);
-      setActiveTab("home");
+      // We only switch tabs if we are not already on the home tab
+      if (activeTab !== "home") {
+        setActiveTab("home");
+      }
     }
   };
 
@@ -450,6 +453,17 @@ export default function Home() {
             <span className="text-[10px] lg:text-sm font-black uppercase lg:normal-case tracking-[0.1em] lg:tracking-normal">{item.label}</span>
           </button>
         ))}
+
+        {/* Prominent New Chat Button (Desktop Sidebar) */}
+        <div className="hidden lg:block mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+          <button 
+            onClick={() => createNewCase()}
+            className="w-full flex items-center justify-center gap-3 py-4 rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 text-white font-black shadow-xl shadow-slate-900/20 hover:shadow-emerald-500/20 hover:from-emerald-600 hover:to-teal-700 transition-all duration-500 group active:scale-95"
+          >
+            <Plus size={20} className="group-hover:rotate-90 transition-transform duration-500" />
+            New Consultation
+          </button>
+        </div>
       </nav>
       )}
 
@@ -469,9 +483,9 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <button 
               onClick={() => createNewCase()}
-              className="p-2.5 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors tactile-press"
+              className="flex items-center gap-2 bg-slate-900 px-4 py-2.5 rounded-2xl text-white font-bold text-sm shadow-xl shadow-slate-900/30 active:scale-95 transition-all hover:bg-emerald-600"
             >
-              <Plus size={20} />
+              <Plus size={18} /> New
             </button>
             <button 
               onClick={() => setIsCameraOpen(true)}
