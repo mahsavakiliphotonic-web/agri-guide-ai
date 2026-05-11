@@ -480,18 +480,20 @@ export default function Home() {
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Precision AI</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button 
               onClick={() => createNewCase()}
-              className="flex items-center gap-2 bg-slate-900 px-4 py-2.5 rounded-2xl text-white font-bold text-sm shadow-xl shadow-slate-900/30 active:scale-95 transition-all hover:bg-emerald-600"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-800 text-white hover:bg-slate-700 transition-all shadow-lg shadow-slate-200 font-bold text-sm"
             >
-              <Plus size={18} /> New
+              <Plus size={18} />
+              <span className="hidden sm:inline">New Chat</span>
             </button>
             <button 
               onClick={() => setIsCameraOpen(true)}
-              className="flex items-center gap-2 bg-emerald-600 px-4 py-2.5 rounded-2xl text-white font-bold text-sm shadow-xl shadow-emerald-600/30 active:scale-95 transition-all hover:bg-emerald-500"
+              className="p-3 rounded-2xl bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-200"
+              title="Open Camera"
             >
-              <Camera size={18} />
+              <Camera size={20} />
             </button>
           </div>
         </header>
