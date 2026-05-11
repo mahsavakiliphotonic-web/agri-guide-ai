@@ -1,0 +1,20 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.mjs": true,
+    "next.config.ts": true,
+    "next-env.d.ts": true,
+    "tsconfig.json": true,
+    "firebase.json": true,
+    ".firebaserc": true,
+    "firestore.indexes.json": true,
+    "firestore.rules": true,
+    "package-lock.json": true
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+    ".env.local": ".env.*, .env"
+  }
+}

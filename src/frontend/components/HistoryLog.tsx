@@ -1,0 +1,191 @@
+"use client";
+
+import React, { useState } from "react";
+import { Clock, Calendar, CheckCircle, AlertCircle, ChevronRight, Folder, FolderOpen, Search, Plus, Filter, MessageSquare, Timer, Trash2, Pencil, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Case } from "@/app/page";
+
+interface HistoryLogProps {
+  cases: Case[];
+  onSelectCase: (caseId: string) => void;
+  onNewCase: () => void;
+  onDeleteCase: (caseId: string) => void;
+  onRenameCase: (caseId: string, newName: string) => void;
+}
+
+export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRenameCase }: HistoryLogProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [newName, setNewName] = useState("");
+
+  const filteredCases = cases.filter(c => 
+    c.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    c.crop?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.diagnosis?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const startRename = (e: React.MouseEvent, id: string, currentName: string) => {
+    e.stopPropagation();
+    setRenamingId(id);
+    setNewName(currentName);
+  };
+
+  const handleRenameSubmit = (id: string) => {
+    if (newName.trim()) {
+      onRenameCase(id, newName.trim());
+    }
+    setRenamingId(null);
+  };
+
+  return (
+    <div className="flex flex-col h-full bg-transparent overflow-hidden">
+      {/* Header Section */}
+      <div className="p-6 bg-white/50 backdrop-blur-md border-b border-slate-200/50">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-3">
+              <FolderOpen className="text-emerald-600" size={28} />
+              Consultations
+            </h2>
+            <p className="text-sm text-slate-500 font-medium mt-1">Manage and track your crop issues by folder.</p>
+          </div>
+          <button 
+            onClick={onNewCase}
+            className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-xl hover:bg-emerald-600 transition-all tactile-press"
+          >
+            <Plus size={24} />
+          </button>
+        </div>
+
+        {/* Search Bar */}
+        <div className="relative group">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
+          <input 
+            type="text" 
+            placeholder="Search crop or disease folders..." 
+            className="w-full bg-slate-100/80 border-none rounded-2xl pl-12 pr-4 py-3.5 text-sm font-medium focus:ring-2 focus:ring-emerald-500/20 transition-all outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* Folders List */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {filteredCases.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center opacity-50">
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4 text-slate-400">
+              <Folder size={32} />
+            </div>
+            <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">No Folders Found</p>
+            <button 
+              onClick={onNewCase}
+              className="mt-4 text-emerald-600 text-sm font-black underline"
+            >
+              Start Your First Consultation
+            </button>
+          </div>
+        ) : (
+          filteredCases.map((item) => (
+            <motion.div 
+              key={item.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => onSelectCase(item.id)}
+              className="folder-card bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm cursor-pointer relative overflow-hidden group"
+            >
+              {/* Status Indicator */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className={`p-2 rounded-xl ${
+                    item.status === 'resolved' ? 'bg-emerald-50 text-emerald-600' : 
+                    item.status === 'active' ? 'bg-amber-50 text-amber-600 animate-pulse' : 
+                    'bg-slate-50 text-slate-600'
+                  }`}>
+                    {item.status === 'resolved' ? <CheckCircle size={16} /> : <Timer size={16} />}
+                  </div>
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${
+                    item.status === 'resolved' ? 'text-emerald-600' : 
+                    item.status === 'active' ? 'text-amber-600' : 
+                    'text-slate-500'
+                  }`}>
+                    {item.status}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={(e) => startRename(e, item.id, item.name)}
+                    className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                    title="Rename"
+                  >
+                    <Pencil size={14} />
+                  </button>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); if(confirm('Delete this folder?')) onDeleteCase(item.id); }}
+                    className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                    title="Delete"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter ml-2">
+                    {new Date(item.lastUpdatedAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
+                  <Folder size={24} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  {renamingId === item.id ? (
+                    <input 
+                      autoFocus
+                      className="w-full bg-slate-100 border-none rounded-lg px-2 py-1 text-lg font-black text-slate-800 outline-none ring-2 ring-emerald-500/20"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                      onBlur={() => handleRenameSubmit(item.id)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleRenameSubmit(item.id)}
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  ) : (
+                    <h3 className="font-black text-slate-800 text-lg leading-tight truncate">{item.name}</h3>
+                  )}
+                  <div className="flex items-center gap-3 mt-1.5">
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+                      <MessageSquare size={12} className="text-emerald-500" />
+                      {item.messages.length} interactions
+                    </div>
+                    {item.crop && (
+                      <>
+                        <span className="text-slate-300">•</span>
+                        <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">{item.crop}</div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div className="self-center">
+                  <ChevronRight size={20} className="text-slate-300 group-hover:text-emerald-500 transition-colors" />
+                </div>
+              </div>
+
+              {/* Progress Bar (Visual Polish) */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-50">
+                <div 
+                  className={`h-full transition-all duration-500 ${
+                    item.status === 'resolved' ? 'bg-emerald-500 w-full' : 
+                    item.status === 'active' ? 'bg-amber-500 w-1/2' : 
+                    'bg-slate-300 w-1/4'
+                  }`}
+                />
+              </div>
+            </motion.div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}

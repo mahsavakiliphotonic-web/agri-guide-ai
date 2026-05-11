@@ -1,0 +1,479 @@
+[
+  {
+    "id": 1,
+    "title": "Fusarium Foot Rot",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Brown discoloration and rotting at the base of the wheat stem; stunted growth and reduced grain fill.",
+    "treatment": "Crop rotation with non-host plants and use of treated seeds to reduce inoculum in the soil.",
+    "color": "purple"
+  },
+  {
+    "id": 2,
+    "title": "Ergot",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Dark, hard sclerotia replacing kernels in rye and other cereals; production of 'honey dew' in early stages.",
+    "treatment": "Deep plowing to bury sclerotia and using clean, certified seeds to prevent introduction.",
+    "color": "rose"
+  },
+  {
+    "id": 3,
+    "title": "Strawberry Grey Mould",
+    "category": "fruits",
+    "severity": "Medium",
+    "symptoms": "Soft, brown rot covered by fuzzy grey fungal growth on fruit; rapid spread in high humidity.",
+    "treatment": "Improving air circulation, removing infected debris, and timed fungicide applications.",
+    "color": "blue"
+  },
+  {
+    "id": 4,
+    "title": "Potato Ring Rot",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Necrotic tissue and bacterial slime within the potato tuber; wilting of lower leaves in the field.",
+    "treatment": "Strict sanitation of machinery and use of certified disease-free seed tubers.",
+    "color": "rose"
+  },
+  {
+    "id": 5,
+    "title": "Bean Rust",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Reddish-brown uredinial pustules on leaves; can lead to premature leaf drop and yield loss.",
+    "treatment": "Use of resistant cultivars and sulfur-based fungicides during high-pressure periods.",
+    "color": "amber"
+  },
+  {
+    "id": 6,
+    "title": "Stemphylium Blight",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Necrotrophic lesions on foliage that kill host tissue; often seen as small, dark spots enlarging into blights.",
+    "treatment": "Foliar fungicides and management of crop residues to lower spore counts.",
+    "color": "blue"
+  },
+  {
+    "id": 7,
+    "title": "Barley Powdery Mildew",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "White, powdery fungal patches on the upper surface of leaves; reduces photosynthetic capacity.",
+    "treatment": "Application of systemic fungicides and selection of varieties with the mlo resistance gene.",
+    "color": "purple"
+  },
+  {
+    "id": 8,
+    "title": "Barley Scald",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Oval, water-soaked lesions with dark brown margins on leaves; leads to rapid leaf death.",
+    "treatment": "Crop rotation and seed treatment to prevent early-season infection from residue.",
+    "color": "blue"
+  },
+  {
+    "id": 9,
+    "title": "Peach Leaf Curl",
+    "category": "fruits",
+    "severity": "High",
+    "symptoms": "Thickened, puckered, and reddish leaves that curl and drop prematurely.",
+    "treatment": "Dormant season fungicide applications before bud break.",
+    "color": "rose"
+  },
+  {
+    "id": 10,
+    "title": "Witch’s Broom",
+    "category": "all",
+    "severity": "Medium",
+    "symptoms": "Dense, bushy clusters of many small branches emerging from a single point; often caused by Taphrina or Phytoplasmas.",
+    "treatment": "Pruning out affected branches and controlling insect vectors if caused by phytoplasmas.",
+    "color": "emerald"
+  },
+  {
+    "id": 11,
+    "title": "Maize Smut",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Large, white galls on ears, tassels, or stems that rupture to release black spores.",
+    "treatment": "Removal of galls before they rupture and crop rotation.",
+    "color": "purple"
+  },
+  {
+    "id": 12,
+    "title": "Pear Rust",
+    "category": "fruits",
+    "severity": "Medium",
+    "symptoms": "Bright orange spots on the upper leaf surface and elongated horn-like structures (aecia) underneath.",
+    "treatment": "Removing alternate hosts like Juniper and applying protective fungicides.",
+    "color": "amber"
+  },
+  {
+    "id": 13,
+    "title": "Crown Gall",
+    "category": "all",
+    "severity": "Medium",
+    "symptoms": "Rough, woody tumors or galls at the soil line or on roots; stunts plant growth.",
+    "treatment": "Preventing wounds during planting and using biological control agents like Agrobacterium radiobacter.",
+    "color": "emerald"
+  },
+  {
+    "id": 14,
+    "title": "Zymoseptoria Tritici",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Necrotic leaf blotches with small black pycnidia; major cause of yield loss in wheat.",
+    "treatment": "Selection of partially resistant varieties and multiple fungicide applications.",
+    "color": "rose"
+  },
+  {
+    "id": 15,
+    "title": "Potato Late Blight",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Dark, water-soaked leaf spots with white fungal growth on undersides; rapid tuber rot.",
+    "treatment": "Intensive fungicide programs and removal of volunteer potatoes and cull piles.",
+    "color": "rose"
+  },
+  {
+    "id": 16,
+    "title": "Yellow Rust",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Yellowish-orange pustules arranged in long stripes on wheat leaves; spreads rapidly in cool weather.",
+    "treatment": "Foliar fungicides and the use of resistant wheat genotypes.",
+    "color": "amber"
+  },
+  {
+    "id": 17,
+    "title": "Rhizoctonia Stem Rot",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Brown, sunken lesions or 'cankers' on stems of peas and beans near the soil line.",
+    "treatment": "Improving soil drainage and using seed treatments; avoid deep planting.",
+    "color": "blue"
+  },
+  {
+    "id": 18,
+    "title": "Bipolaris Root Rot",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Dark brown lesions on roots and sub-crown internodes of barley; results in thin stands.",
+    "treatment": "Seed treatment and balanced soil fertility to improve plant vigor.",
+    "color": "purple"
+  },
+  {
+    "id": 19,
+    "title": "Net Blotch",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Dark brown 'net-like' patterns on barley leaves; significantly reduces grain weight.",
+    "treatment": "Crop rotation and avoiding the use of infected seeds.",
+    "color": "blue"
+  },
+  {
+    "id": 20,
+    "title": "Fireblight",
+    "category": "fruits",
+    "severity": "High",
+    "symptoms": "Blackened, withered shoots and branches that look scorched by fire; bacterial ooze during wet weather.",
+    "treatment": "Pruning infected wood well below visible symptoms and incineration of trees.",
+    "color": "rose"
+  },
+  {
+    "id": 21,
+    "title": "Dutch Elm Disease",
+    "category": "all",
+    "severity": "High",
+    "symptoms": "Sudden wilting and yellowing of foliage in trees, progressing to death of large limbs.",
+    "treatment": "Removal of infected trees and control of the bark beetle vectors.",
+    "color": "amber"
+  },
+  {
+    "id": 22,
+    "title": "Chocolate Spot",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Small, reddish-brown spots on faba bean leaves that can coalesce into blights.",
+    "treatment": "Increasing plant spacing for aeration and application of fungicides.",
+    "color": "blue"
+  },
+  {
+    "id": 23,
+    "title": "Cucumber Green Mottle Mosaic Virus",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Mottling and distortion of leaves; highly infectious and spreads through mechanical contact.",
+    "treatment": "Removal of infected plants and strict decontamination of tools.",
+    "color": "rose"
+  },
+  {
+    "id": 24,
+    "title": "Fruit Tree Canker",
+    "category": "fruits",
+    "severity": "Medium",
+    "symptoms": "Depressed, concentric rings of dead bark on trunks and branches; can girdle stems.",
+    "treatment": "Pruning out cankered wood and applying copper fungicides in autumn.",
+    "color": "amber"
+  },
+  {
+    "id": 25,
+    "title": "Ramularia Leaf Spot",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Small, rectangular brown spots on barley leaves; often appears late in the season.",
+    "treatment": "Use of specific fungicides and choosing varieties with lower susceptibility.",
+    "color": "blue"
+  },
+  {
+    "id": 26,
+    "title": "Tan Spot",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Oval lesions with a dark center and a yellow halo on wheat leaves; survives on straw residue.",
+    "treatment": "Straw management through tillage or rotation to break the cycle.",
+    "color": "amber"
+  },
+  {
+    "id": 27,
+    "title": "Eyespot",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Eye-shaped lesions on the lower stem of cereals; weakens the stalk leading to lodging.",
+    "treatment": "Delaying early sowing and using fungicides targeted at the stem base.",
+    "color": "purple"
+  },
+  {
+    "id": 28,
+    "title": "Common Scab",
+    "category": "vegetables",
+    "severity": "Low",
+    "symptoms": "Corky, raised, or pitted lesions on the surface of potato tubers; affects marketability.",
+    "treatment": "Maintaining soil moisture during tuber set and lowering soil pH.",
+    "color": "emerald"
+  },
+  {
+    "id": 29,
+    "title": "Wheat Dwarf Virus",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Severe stunting and yellowing of wheat plants; often follows early sowing when vectors are active.",
+    "treatment": "Adjusting sowing dates to avoid leafhopper activity and controlling weeds.",
+    "color": "rose"
+  },
+  {
+    "id": 30,
+    "title": "Black Spot of Rape",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Circular dark spots on leaves, stems, and pods of oilseed rape; can cause pod shattering.",
+    "treatment": "Use of clean seed and fungicide sprays if symptoms appear on pods.",
+    "color": "blue"
+  },
+  {
+    "id": 31,
+    "title": "Cephalosporium Stripe",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Long, yellow stripes on leaves caused by vascular colonization; often linked to soil heaving.",
+    "treatment": "Crop rotation and avoiding shallow sowing in cold climates.",
+    "color": "purple"
+  },
+  {
+    "id": 32,
+    "title": "Potato Brown Rot",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Bacterial wilting of leaves and dark discoloration of the vascular ring in tubers; bacterial ooze.",
+    "treatment": "Quarantine measures and zero tolerance for infected seed lots.",
+    "color": "rose"
+  },
+  {
+    "id": 33,
+    "title": "Plum Pox Virus",
+    "category": "fruits",
+    "severity": "High",
+    "symptoms": "Chlorotic ring spots on leaves and fruit; severely degrades fruit quality and yield.",
+    "treatment": "Removal and destruction of infected trees; strictly a quarantine pathogen.",
+    "color": "amber"
+  },
+  {
+    "id": 34,
+    "title": "Fusarium Wilt of Flax",
+    "category": "all",
+    "severity": "High",
+    "symptoms": "Sudden wilting and death of plants; fungus persists in soil for many years.",
+    "treatment": "Screening for soil antagonists and using highly resistant varieties.",
+    "color": "rose"
+  },
+  {
+    "id": 35,
+    "title": "Pythium Damping-Off",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Rapid rotting of seeds and stems of young seedlings at the soil line; leads to poor stands.",
+    "treatment": "Seed treatments and preventing waterlogging in nursery beds.",
+    "color": "blue"
+  },
+  {
+    "id": 36,
+    "title": "Powdery Mildew of Cucumber",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "White fungal growth on surfaces of leaves and stems; reduces fruit yield and size.",
+    "treatment": "Application of biocontrol fungi like Tilletiopsis minor or sulfur-based sprays.",
+    "color": "emerald"
+  },
+  {
+    "id": 37,
+    "title": "Xylella Fastidiosa",
+    "category": "fruits",
+    "severity": "High",
+    "symptoms": "Leaf scorching and rapid dieback of olive trees; limits water transport in the xylem.",
+    "treatment": "Rigid quarantine and management of insect vectors (leafhoppers).",
+    "color": "rose"
+  },
+  {
+    "id": 38,
+    "title": "Potato Wart",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Cauliflower-like galls on potato tubers; caused by soilborne resting spores.",
+    "treatment": "Long-term soil quarantine and use of immune cultivars.",
+    "color": "amber"
+  },
+  {
+    "id": 39,
+    "title": "Apple Scab",
+    "category": "fruits",
+    "severity": "Medium",
+    "symptoms": "Dark, velvety lesions on leaves and fruit; results in distorted, cracked fruit.",
+    "treatment": "Removal of fallen leaf litter and timed fungicide sprays.",
+    "color": "blue"
+  },
+  {
+    "id": 40,
+    "title": "Take-All",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Blackened, shortened roots in wheat; results in stunted growth and 'whiteheads' (sterile ears).",
+    "treatment": "Crop rotation with non-cereal crops and maintaining high soil phosphorus.",
+    "color": "purple"
+  },
+  {
+    "id": 41,
+    "title": "Stem Rust",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Elongated, brick-red pustules on wheat stems and leaf sheaths; can cause total crop failure.",
+    "treatment": "Eradication of alternate hosts (Barberry) and using resistant wheat varieties.",
+    "color": "rose"
+  },
+  {
+    "id": 42,
+    "title": "Loose Smut of Barley",
+    "category": "grains",
+    "severity": "Medium",
+    "symptoms": "Normal kernels are replaced by masses of black powdery spores; visible at heading.",
+    "treatment": "Systemic seed treatment fungicides to kill internal fungal infection.",
+    "color": "purple"
+  },
+  {
+    "id": 43,
+    "title": "Black Scurf",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Hard black sclerotia on potato tubers; brown lesions on developing sprouts.",
+    "treatment": "Using clean seed tubers and avoiding planting in cold, wet soils.",
+    "color": "emerald"
+  },
+  {
+    "id": 44,
+    "title": "Clubroot",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Swollen, distorted galls on roots of cabbage and swede; causes wilting and stunting.",
+    "treatment": "Raising soil pH with lime and using resistant cultivars.",
+    "color": "amber"
+  },
+  {
+    "id": 45,
+    "title": "Cereal Cyst Nematode",
+    "category": "grains",
+    "severity": "High",
+    "symptoms": "Patches of stunted, yellowed plants; roots show small white 'cysts' (females).",
+    "treatment": "Rotating with non-host crops and using resistant cereal varieties.",
+    "color": "rose"
+  },
+  {
+    "id": 46,
+    "title": "Root-Knot Nematode",
+    "category": "all",
+    "severity": "High",
+    "symptoms": "Visible galls or 'knots' on roots; causes severe deformation and yield loss in carrots and roses.",
+    "treatment": "Soil fumigation or rotation with tagetes (marigolds).",
+    "color": "rose"
+  },
+  {
+    "id": 47,
+    "title": "Stem Nematode",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Swollen and distorted stems and leaves in red clover or onions.",
+    "treatment": "Using clean planting material and avoiding contaminated irrigation water.",
+    "color": "blue"
+  },
+  {
+    "id": 48,
+    "title": "Pine Wood Nematode",
+    "category": "all",
+    "severity": "High",
+    "symptoms": "Rapid wilting and death of pine trees; transmitted by the pine sawyer beetle.",
+    "treatment": "Heat treatment of wood and removal of dead host trees.",
+    "color": "amber"
+  },
+  {
+    "id": 49,
+    "title": "Bitter Rot",
+    "category": "fruits",
+    "severity": "Medium",
+    "symptoms": "Sunken, circular spots on apples that expand and develop concentric rings of spores.",
+    "treatment": "Pruning out dead twigs and applying protective fungicides during fruit growth.",
+    "color": "emerald"
+  },
+  {
+    "id": 50,
+    "title": "Tomato Big Bud",
+    "category": "vegetables",
+    "severity": "High",
+    "symptoms": "Swollen green buds that fail to develop into fruit; bushy appearance with small, yellow-green leaves.",
+    "treatment": "Removal of weed hosts and controlling leafhopper vectors.",
+    "color": "rose"
+  },
+  {
+    "id": 51,
+    "title": "Early Blight",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Concentric 'target' spots on older leaves; dark sunken spots on tomato fruit ends.",
+    "treatment": "Balanced fertilization and rotating with non-solanaceous crops.",
+    "color": "blue"
+  },
+  {
+    "id": 52,
+    "title": "Anthracnose of Tomato",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Small, sunken circular spots on ripe fruit; lesions often have dark centers.",
+    "treatment": "Avoid overhead irrigation and use protective fungicides.",
+    "color": "emerald"
+  },
+  {
+    "id": 53,
+    "title": "Bacterial Speck",
+    "category": "vegetables",
+    "severity": "Medium",
+    "symptoms": "Tiny black specks on leaves, stems, and green fruit; often surrounded by a yellow halo.",
+    "treatment": "Using certified seeds and avoiding contact with wet plants.",
+    "color": "blue"
+  }
+]
