@@ -127,9 +127,9 @@ export default function Home() {
         setCases(parsed);
         // If there are cases, select the most recent one
         if (parsed.length > 0) {
-          const latest = parsed.sort((a: Case, b: Case) => b.lastUpdatedAt - a.lastUpdatedAt)[0];
-          setCurrentCaseId(latest.id);
-          setMessages(latest.messages);
+          // We load the cases into state, but we DON'T select one.
+          // This ensures the app starts with a "Fresh Chat" interface.
+          setCurrentCaseId(null);
         }
       } catch (e) {
         console.error("Failed to load cases", e);
