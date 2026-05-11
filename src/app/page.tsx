@@ -264,7 +264,7 @@ export default function Home() {
       } else if (!currentCaseId) {
         // Create a new case if none exists
         const newId = Date.now().toString();
-        setCases(prev => [{
+        const newCase: Case = {
           id: newId,
           name: `${data.diagnosis.species} Issue`,
           messages: [...messages, userMsg, botMsg],
@@ -273,7 +273,8 @@ export default function Home() {
           status: "active",
           crop: data.diagnosis.species,
           diagnosis: data.diagnosis.disease
-        }, ...prev]);
+        };
+        setCases(prev => [newCase, ...prev]);
         setCurrentCaseId(newId);
       }
 
@@ -323,11 +324,45 @@ export default function Home() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Query failed");
 
-      setMessages(prev => [...prev, {
-        id: (Date.now() + 1).toString(),
+      const botMsgId = (Date.now() + 1).toString();
+      const botMsg: Message = {
+        id: botMsgId,
         role: "bot",
         content: data.answer
-      }]);
+      };
+
+      setMessages(prev => [...prev, botMsg]);
+
+      // If no current case exists, create one now
+      if (!currentCaseId) {
+        const newId = Date.now().toString();
+        const firstWords = text.split(" ").slice(0, 3).join(" ");
+        const caseName = text ? (firstWords.length > 20 ? firstWords.substring(0, 20) + "..." : firstWords) : "Image Inquiry";
+        
+        setCases(prev => [{
+          id: newId,
+          name: caseName,
+          messages: [...messages, { 
+            id: userMsgId, 
+            role: "user", 
+            content: text || "Image Analysis",
+            image: imagePreviewUrl
+          }, botMsg],
+          createdAt: Date.now(),
+          lastUpdatedAt: Date.now(),
+          status: "active"
+        }, ...prev]);
+        setCurrentCaseId(newId);
+      } else {
+        // If it's a "New Consultation", try to give it a better name based on the first message
+        setCases(prev => prev.map(c => {
+          if (c.id === currentCaseId && c.name === "New Consultation") {
+            const firstWords = text.split(" ").slice(0, 3).join(" ");
+            return { ...c, name: firstWords || "Consultation" };
+          }
+          return c;
+        }));
+      }
     } catch (err) {
       console.error(err);
       const errorMsg = settings.language === "Finnish" 
