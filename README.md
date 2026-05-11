@@ -42,7 +42,7 @@ AgriGuide organizes work into **Consultations**.
 
 ---
 
-## 🛠️ Testing Guide (For Evaluators)
+## 🛠️ Evaluation Guide (For Testing)
 
 > [!IMPORTANT]
 > **How to Test for Success:** Because this system uses RAG, its treatment expertise is specific to its indexed library. To see the full power of the system, **please use the "Library" tab as a guide.** 
@@ -51,12 +51,19 @@ AgriGuide organizes work into **Consultations**.
 
 ---
 
-## 🏁 Getting Started
+## 🏁 Access & Deployment
 
-1. **Clone the Repo:** `git clone https://github.com/your-username/agri-guide-ai.git`
-2. **Install Dependencies:** `npm install`
-3. **Config Env:** Add your `GOOGLE_GENERATIVE_AI_API_KEY` to `.env.local`.
-4. **Run Locally:** `npm run dev`
+This project is deployed as a high-performance **PWA (Progressive Web App)** on Vercel.
+
+### 1. Live URL
+Access the live application here: [**[Your Vercel URL will go here]**]
+
+### 2. Authentication
+The application uses **Firebase Authentication**.
+- **Login:** Users can sign up or log in using their email or Google account to keep their consultation history private and secure.
+
+### 3. Mobile Experience
+For the best experience (including camera access), open the URL on a mobile device and use the "Add to Home Screen" feature to install it as a native-feeling app.
 
 ---
 *Developed as a Final Project for the AI in Practice Program - 2026*
