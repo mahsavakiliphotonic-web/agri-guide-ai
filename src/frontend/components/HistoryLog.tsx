@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Clock, Calendar, CheckCircle, AlertCircle, ChevronRight, Folder, FolderOpen, Search, Plus, Filter, MessageSquare, Timer, Trash2, Pencil, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Case } from "@/app/page";
 
