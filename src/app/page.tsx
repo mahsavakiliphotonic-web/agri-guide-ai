@@ -291,7 +291,18 @@ export default function Home() {
 
   const handleSendMessage = async (text: string, image?: File) => {
     const userMsgId = Date.now().toString();
-    const imagePreviewUrl = image ? URL.createObjectURL(image) : undefined;
+    
+    // Helper to convert file to base64 for persistence
+    const fileToBase64 = (file: File): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+      });
+    };
+
+    const imagePreviewUrl = image ? await fileToBase64(image) : undefined;
     
     setMessages(prev => [...prev, { 
       id: userMsgId, 
