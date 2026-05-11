@@ -6,30 +6,15 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 
 ---
 
-## 🚀 Core Features
+## ✨ Key Features
 
-### 1. Multimodal Vision Diagnosis
-Powered by **Gemini 1.5 Flash**, the app analyzes plant photos in real-time to identify species and detect diseases or pest infestations with expert-level precision.
-
-### 2. Intelligent RAG Knowledge Base
-The core of AgriGuide's reliability is its **Retrieval-Augmented Generation (RAG)** architecture.
-- **Scientifically Grounded:** Unlike generic AI, AgriGuide's treatment advice is retrieved exclusively from a local database of verified agricultural PDFs.
-- **Boundary of Knowledge:** To ensure 100% accuracy, the AI is instructed to only provide treatments found within the provided context.
-- **Future Scalability:** While currently focused on a specific set of diseases (see Library), the system is designed to be easily "upgraded" by simply adding more PDF manuals to the database.
-
-### 3. Smart Library (The Knowledge Map)
-The **Library** section is the map of the AI's current expertise. It lists every disease and pest currently indexed in the RAG system.
-- **Testing Reference:** For evaluation purposes, users should refer to the Library to see which conditions the system is currently "trained" to handle.
-- **Data-Driven:** Each entry in the library represents a deep indexing of professional agricultural research.
-
-### 4. Consultation Case Management (History)
-AgriGuide organizes work into **Consultations**.
-- **Folder-based Tracking:** Users can create separate folders (Consultations) for different crops or specific field issues.
-- **Continuous Dialogue:** If a problem persists, users can return to any previous consultation to continue the conversation with the AI, maintaining the full context of the diagnosis history.
-
-### 5. Agricultural Weather & Localization
-- **Dynamic Language:** If a user selects **Finnish**, **Persian**, **Spanish**, etc., in Settings, the AI dynamically translates its entire reasoning and output to that language.
-- **Location-Aware Weather:** Using the farm's location, the app provides real-time weather and agricultural warnings.
+- **🧠 Advanced RAG Architecture**: Direct integration with a curated agricultural knowledge base. The AI strictly prioritizes indexed scientific data over generic LLM training to ensure 100% accurate diagnostic recommendations.
+- **📸 Multi-modal Diagnostics**: Real-time image analysis via camera or file upload, enabling instant field identification of plant pathologies.
+- **📂 Persistent Consultation Management**: A professional "ChatGPT-style" session architecture. Consultations are automatically categorized into folders with full CRUD (Create, Read, Update, Delete) capabilities.
+- **🖼️ Persistent Visual History**: Every consultation folder preserves its full visual context, including high-resolution Base64-encoded image history stored locally for instant offline retrieval.
+- **⚡ Streamlined Navigation**: Optimized user interface with "One-Touch" session initiation and a premium, responsive design tailored for both desktop and field use.
+- **🌍 Dynamic Localization**: Full support for English, Persian, and Spanish, ensuring accessible expert advice for global farming communities.
+- **🌦️ Real-time Environmental Context**: Integrated weather dashboard to correlate local climate conditions with potential fungal or pest outbreaks.
 
 ---
 
@@ -39,6 +24,17 @@ AgriGuide organizes work into **Consultations**.
 1. **Vision Phase:** User uploads an image → Vision engine extracts `{species, disease, urgency, treatment_query}`.
 2. **Retrieval Phase:** The `treatment_query` triggers a vector search against the local PDF database.
 3. **Synthesis Phase:** The retrieved scientific context is passed to the LLM to generate a professional recommendation in the user's preferred language.
+
+## 🛠️ Technology Stack
+
+| Component | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Framework** | Next.js 16 (App Router) | Modern, high-performance web foundation |
+| **Styling** | Tailwind CSS 4 + Framer Motion | Premium, animated, and responsive UI |
+| **AI Engine** | Google Gemini 1.5 Pro | State-of-the-art vision and reasoning |
+| **Orchestration** | LangChain | Robust RAG and document processing |
+| **Persistence** | Browser LocalStorage | Secure, privacy-focused client-side storage |
+| **Backend** | Node.js | Fast API execution and server-side processing |
 
 ---
 
