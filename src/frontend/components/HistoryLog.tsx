@@ -114,22 +114,28 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
                     {item.status}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                   <button 
                     onClick={(e) => startRename(e, item.id, item.name)}
-                    className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                    className="p-3 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
                     title="Rename"
                   >
-                    <Pencil size={14} />
+                    <Pencil size={16} />
                   </button>
                   <button 
-                    onClick={(e) => { e.stopPropagation(); if(confirm('Delete this folder?')) onDeleteCase(item.id); }}
-                    className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                    onClick={(e) => { 
+                      e.stopPropagation(); 
+                      e.preventDefault();
+                      if(confirm('Delete this folder and all its messages?')) {
+                        onDeleteCase(item.id); 
+                      }
+                    }}
+                    className="p-3 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
                     title="Delete"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={16} />
                   </button>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter ml-2">
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter ml-2 hidden sm:block">
                     {new Date(item.lastUpdatedAt).toLocaleDateString()}
                   </span>
                 </div>
