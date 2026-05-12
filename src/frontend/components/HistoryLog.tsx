@@ -142,8 +142,8 @@ export function HistoryLog({ cases, onSelectCase, onNewCase, onDeleteCase, onRen
                           className="text-lg font-black bg-slate-50 border-none rounded-lg px-2 py-1 outline-emerald-500"
                           value={newName}
                           onChange={(e) => setNewName(e.target.value)}
-                          onBlur={() => saveRename(item.id)}
-                          onKeyDown={(e) => e.key === 'Enter' && saveRename(item.id)}
+                          onBlur={() => handleRenameSubmit(item.id)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleRenameSubmit(item.id)}
                           onClick={(e) => e.stopPropagation()}
                         />
                       ) : (
