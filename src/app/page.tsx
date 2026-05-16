@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Camera, Book, History, Settings as SettingsIcon, AlertTriangle, Search, Plus, FolderOpen, Sun, Bot, CloudSun, Droplets, ShieldAlert } from "lucide-react";
+import { Camera, Book, History, Settings as SettingsIcon, AlertTriangle, Search, Plus, FolderOpen, Sun, Bot, CloudSun, Droplets, ShieldAlert, LogOut } from "lucide-react";
+import { useAuth } from "@/frontend/contexts/AuthContext";
+import { LoginView } from "@/frontend/components/LoginView";
 import { motion, AnimatePresence } from "framer-motion";
 import { CameraDiagnosis } from "@/frontend/components/CameraDiagnosis";
 import { ChatInterface, Message } from "@/frontend/components/ChatInterface";
@@ -26,6 +28,7 @@ export interface Case {
 }
 
 export default function Home() {
+  const { user, loading, logout } = useAuth();
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -107,6 +110,19 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+
+  // Auth Guard
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginView />;
+  }
   const [cases, setCases] = useState<Case[]>([]);
   const [currentCaseId, setCurrentCaseId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
@@ -487,6 +503,30 @@ export default function Home() {
             <span className="text-[10px] lg:text-sm font-black uppercase lg:normal-case tracking-[0.1em] lg:tracking-normal">{item.label}</span>
           </button>
         ))}
+
+        {/* User Profile Section (Desktop Sidebar) */}
+        <div className="hidden lg:flex flex-col gap-4 mt-auto mb-6">
+          <div className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800 group transition-all hover:bg-white dark:hover:bg-slate-800 shadow-sm hover:shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-black shadow-lg shadow-emerald-500/20 shrink-0">
+              {user?.displayName?.[0] || user?.email?.[0]?.toUpperCase() || "U"}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-black text-slate-800 dark:text-white truncate">
+                {user?.displayName || "Agri User"}
+              </p>
+              <p className="text-[10px] font-bold text-slate-400 truncate uppercase tracking-widest">
+                {user?.email}
+              </p>
+            </div>
+            <button 
+              onClick={() => logout()}
+              className="p-2.5 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 text-slate-400 rounded-xl transition-all active:scale-90"
+              title="Logout"
+            >
+              <LogOut size={18} />
+            </button>
+          </div>
+        </div>
 
         {/* Prominent New Chat Button (Desktop Sidebar) */}
         <div className="hidden lg:block mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
