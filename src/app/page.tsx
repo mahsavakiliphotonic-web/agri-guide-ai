@@ -330,20 +330,22 @@ export default function Home() {
 
     const imagePreviewUrl = image ? await compressFile(image) : undefined;
     
-    setMessages(prev => [...prev, { 
+    const userMessage: Message = { 
       id: userMsgId, 
       role: "user", 
-      content: text || "What can you tell me about this plant?",
+      content: text || (settings.language === "Persian" ? "درخواست بررسی گیاه" : "Plant Inquiry"),
       image: imagePreviewUrl
-    }]);
-    
+    };
+
+    setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
+
     try {
       let res: Response;
       if (image) {
         const formData = new FormData();
         formData.append("image", image, image.name);
-        formData.append("query", text || "Identify this plant and check for diseases.");
+        formData.append("query", userMessage.content);
         formData.append("preferredLanguage", settings.language);
         res = await fetch("/api/chat", { method: "POST", body: formData });
       } else {
@@ -367,23 +369,15 @@ export default function Home() {
         content: data.answer
       };
 
-      // If no current case exists, create one now with ALL messages included
       if (!currentCaseId) {
         const newId = Date.now().toString();
-        const firstWords = text.split(" ").slice(0, 3).join(" ");
+        const firstWords = userMessage.content.split(" ").slice(0, 3).join(" ");
         const caseName = text ? (firstWords.length > 20 ? firstWords.substring(0, 20) + "..." : firstWords) : "Analysis";
         
-        const newUserMsg: Message = { 
-          id: userMsgId, 
-          role: "user", 
-          content: text || "Plant Inquiry",
-          image: imagePreviewUrl
-        };
-
         const newCase: Case = {
           id: newId,
           name: caseName,
-          messages: [...messages, newUserMsg, botMsg],
+          messages: [...messages, userMessage, botMsg],
           createdAt: Date.now(),
           lastUpdatedAt: Date.now(),
           status: "active"
@@ -393,14 +387,17 @@ export default function Home() {
         setCurrentCaseId(newId);
         setMessages(newCase.messages);
       } else {
-        // If case exists, just update messages as usual
         setMessages(prev => [...prev, botMsg]);
         
-        // Auto-rename if it was a "New Consultation"
         setCases(prev => prev.map(c => {
-          if (c.id === currentCaseId && c.name === "New Consultation") {
-            const firstWords = text.split(" ").slice(0, 3).join(" ");
-            return { ...c, name: firstWords || "Consultation" };
+          if (c.id === currentCaseId) {
+            const firstWords = userMessage.content.split(" ").slice(0, 3).join(" ");
+            return { 
+              ...c, 
+              messages: [...c.messages, userMessage, botMsg],
+              lastUpdatedAt: Date.now(),
+              name: c.name === "New Consultation" ? (firstWords || "Consultation") : c.name
+            };
           }
           return c;
         }));
