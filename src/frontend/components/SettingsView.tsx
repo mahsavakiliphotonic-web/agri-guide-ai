@@ -361,7 +361,6 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
       title: "App Settings",
       icon: <Shield className="text-slate-600" size={20} />,
       items: [
-        { key: 'notifications', label: "Notifications", value: settings.notifications ? "Enabled" : "Disabled", isToggle: true },
         { key: 'darkMode', label: "Dark Mode", value: settings.darkMode ? "On" : "Off", isToggle: true }
       ]
     }
