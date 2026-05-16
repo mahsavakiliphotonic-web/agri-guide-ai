@@ -14,7 +14,7 @@ export const indexBooks = async () => {
     if (!fs.existsSync(booksDir)) return;
 
     const files = fs.readdirSync(booksDir).filter(f => f.endsWith(".pdf"));
-    
+
     knowledgeBase = [];
     for (const file of files) {
         try {
@@ -37,7 +37,7 @@ export const queryKnowledgeBase = async (query: string, preferredLanguage: strin
     }
 
     let MODELS_TO_TRY = getWorkingModels();
-    
+
     let lastError = "";
     for (const modelName of MODELS_TO_TRY) {
         let attempts = 0;
@@ -46,16 +46,16 @@ export const queryKnowledgeBase = async (query: string, preferredLanguage: strin
         while (attempts < maxAttempts) {
             try {
                 console.log(`Trying model: ${modelName} (Attempt ${attempts + 1})`);
-                const model = genAI.getGenerativeModel({ 
+                const model = genAI.getGenerativeModel({
                     model: modelName,
                 });
-                
+
                 const relevantData = knowledgeBase.filter(doc => {
                     const searchStr = query.toLowerCase();
                     return doc.text.toLowerCase().includes(searchStr);
                 }).slice(0, 2);
 
-                const context = relevantData.length > 0 
+                const context = relevantData.length > 0
                     ? relevantData.map(d => `Source: ${d.source}\nContent: ${d.text.substring(0, 2000)}`).join("\n\n")
                     : "No specific manual context found for this query.";
 
@@ -63,6 +63,8 @@ export const queryKnowledgeBase = async (query: string, preferredLanguage: strin
                     SYSTEM INSTRUCTION: You are a world-class professional Agronomist. 
                     CRITICAL LANGUAGE REQUIREMENT: You MUST respond entirely in ${preferredLanguage}. Do NOT use any other language.
 
+                    EXPERT ROLE: Provide detailed treatment, prevention, and agronomic recommendations.
+                    NO REPETITION: Do NOT repeat the plant name or the disease diagnosis if they are already mentioned in the query context. Focus IMMEDIATELY on the actionable advice and technical assessment.
                     
                     Expert Knowledge Base Context:
                     ${context}
@@ -76,7 +78,7 @@ export const queryKnowledgeBase = async (query: string, preferredLanguage: strin
             } catch (err: any) {
                 lastError = err.message || "Unknown AI Error";
                 console.error(`RAG Error (${modelName}):`, lastError);
-                
+
                 // If it's a quota error, wait and retry or try next model
                 if (lastError.includes("429") || lastError.includes("Too Many Requests")) {
                     console.log("Quota exceeded, waiting 2 seconds...");
@@ -98,6 +100,6 @@ export const queryKnowledgeBase = async (query: string, preferredLanguage: strin
         "German": "KI ist derzeit beschäftigt. Bitte versuchen Sie es in einem Moment noch einmal.",
         "Arabic": "الذكاء الاصطناعي مشغول حاليًا. يرجى المحاولة مرة أخرى بعد قليل."
     };
-    
+
     return langMap[preferredLanguage] || langMap["English"];
 };
