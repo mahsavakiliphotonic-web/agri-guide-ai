@@ -463,22 +463,6 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
           </div>
         ))}
 
-        {/* Danger Zone */}
-        <div className="pt-4 space-y-3">
-          <button className="w-full flex items-center justify-between p-5 bg-white border border-slate-100 rounded-[2rem] text-slate-600 font-bold text-sm hover:bg-slate-50 transition-all">
-            <div className="flex items-center gap-3">
-              <Download size={18} className="text-blue-500" />
-              Export All Farm Data
-            </div>
-            <ChevronRight size={16} />
-          </button>
-          <button className="w-full flex items-center justify-between p-5 bg-rose-50 border border-rose-100 rounded-[2rem] text-rose-600 font-bold text-sm hover:bg-rose-100 transition-all">
-            <div className="flex items-center gap-3">
-              <Trash2 size={18} />
-              Reset All Consultations
-            </div>
-          </button>
-        </div>
       </div>
 
       {/* Location Picker Modal */}
