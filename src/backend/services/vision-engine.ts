@@ -19,7 +19,15 @@ export const analyzePlantImage = async (imageBuffer: ArrayBuffer, mimeType: stri
     while (attempts < maxAttempts) {
       try {
         console.log(`Vision: Trying model ${modelName} (Attempt ${attempts + 1})`);
-        const model = genAI.getGenerativeModel({ model: modelName });
+        const model = genAI.getGenerativeModel({ 
+          model: modelName,
+          generationConfig: {
+            temperature: 0,
+            topP: 0.1,
+            topK: 1,
+            maxOutputTokens: 1024,
+          }
+        });
         
         const prompt = `You are a highly deterministic expert plant pathologist and agronomist. 
         Analyze this plant image and provide the most likely, accurate diagnosis.
