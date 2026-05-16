@@ -525,13 +525,6 @@ export default function Home() {
               <Plus size={18} />
               <span className="hidden sm:inline">New Chat</span>
             </button>
-            <button 
-              onClick={() => setIsCameraOpen(true)}
-              className="p-3 rounded-2xl bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-200"
-              title="Open Camera"
-            >
-              <Camera size={20} />
-            </button>
           </div>
         </header>
 
@@ -555,9 +548,6 @@ export default function Home() {
                   <div className="flex gap-3">
                     <button onClick={() => createNewCase()} className="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 font-bold bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all">
                       <Plus size={18} /> New Chat
-                    </button>
-                    <button onClick={() => setIsCameraOpen(true)} className="flex items-center gap-2 bg-emerald-600 px-5 py-2 rounded-xl text-white font-bold shadow-lg shadow-emerald-600/20 hover:bg-emerald-500 transition-all active:scale-95">
-                      <Camera size={18} /> Identify Disease
                     </button>
                   </div>
                 </div>
