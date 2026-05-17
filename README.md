@@ -52,7 +52,7 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 This project is deployed as a high-performance **PWA (Progressive Web App)** on Vercel.
 
 ### 1. Live URL
-Access the live application here: agri-guide-ai-lilac.vercel.app
+Access the live application here: [agri-guide-ai-lilac.vercel.app]
 
 ### 2. Authentication
 The application uses **Firebase Authentication**.
