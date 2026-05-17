@@ -10,7 +10,7 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 
 - **🧠 Advanced RAG Architecture**: Direct integration with a curated agricultural knowledge base. The AI strictly prioritizes indexed scientific data over generic LLM training to ensure 100% accurate diagnostic recommendations.
 - **📸 Multi-modal Diagnostics**: Real-time image analysis via camera or file upload, enabling instant field identification of plant pathologies.
-- **📂 Persistent Consultation Management**: A professional "ChatGPT-style" session architecture. Consultations are automatically categorized into folders with full CRUD (Create, Read, Update, Delete) capabilities.
+- **📂 Persistent Consultation Management**: A professional "ChatGPT-style" session architecture. Consultations are automatically categorized into folders with full CRUD (Create, Read, Update, Delete) capabilities. So, the user can return to previous chats to continue consulting.
 - **🖼️ Persistent Visual History**: Every consultation folder preserves its full visual context, including high-resolution Base64-encoded image history stored locally for instant offline retrieval.
 - **⚡ Streamlined Navigation**: Optimized user interface with "One-Touch" session initiation and a premium, responsive design tailored for both desktop and field use.
 - **🌍 Dynamic Localization**: Full support for English, Persian, and Spanish, ensuring accessible expert advice for global farming communities.
@@ -43,7 +43,7 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 > [!IMPORTANT]
 > **How to Test for Success:** Because this system uses RAG, its treatment expertise is specific to its indexed library. To see the full power of the system, **please use the "Library" tab as a guide.** 
 > 
-> Select a disease listed in the Library (e.g., *Potato Late Blight* or *Citrus Canker*) and use a corresponding image for analysis. The system will demonstrate its ability to find the exact scientific treatment from the indexed PDFs and present it in your chosen language.
+> Select a disease listed in the Library (e.g., *Potato Late Blight* or *Citrus Canker*). With Disease Search, you can download any image of the disease and use it for analysis. The system will demonstrate its ability to find the exact scientific treatment from the indexed PDFs and present it based on the language that you select in the settings section.
 
 ---
 
