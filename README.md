@@ -56,7 +56,7 @@ Access the live application here: [**[Your Vercel URL will go here]**]
 
 ### 2. Authentication
 The application uses **Firebase Authentication**.
-- **Login:** Users can sign up or log in using their email or Google account to keep their consultation history private and secure.
+- **Login Requirement:** Access to the application requires a **Google (Gmail) account**. Please use the "Continue with Google" button on the login screen. Other login methods (like email/password) are intentionally disabled for a streamlined and secure experience.
 
 ### 3. Mobile Experience
 For the best experience (including camera access), open the URL on a mobile device and use the "Add to Home Screen" feature to install it as a native-feeling app.
