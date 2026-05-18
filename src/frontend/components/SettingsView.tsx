@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { User, Globe, Moon, Sun, Trash2, Download, Shield, Bell, ChevronRight, Sprout, MapPin, Search, X, ChevronDown } from "lucide-react";
+import { User, Globe, Moon, Sun, Trash2, Download, Shield, Bell, ChevronRight, Sprout, MapPin, Search, X, ChevronDown, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Country, City } from 'country-state-city';
+import { useAuth } from "../contexts/AuthContext";
 
 interface Settings {
   farmName: string;
@@ -331,6 +332,7 @@ function LocationPicker({ currentLocation, onSave, onClose }: {
 // ─── Main Settings View ───────────────────────────────────────────────────────
 export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) {
   const [showLocationPicker, setShowLocationPicker] = useState(false);
+  const { logout } = useAuth();
 
   const sections: Section[] = [
     {
