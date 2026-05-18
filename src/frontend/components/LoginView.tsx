@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { motion } from "framer-motion";
-import { LogIn, Sparkles, Sprout, ShieldCheck, Globe, AlertCircle } from "lucide-react";
+import { LogIn, Sparkles, Sprout, ShieldCheck, Globe, AlertCircle, User } from "lucide-react";
 
 export const LoginView: React.FC = () => {
   const { loginWithGoogle } = useAuth();
@@ -69,13 +69,26 @@ export const LoginView: React.FC = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleLogin}
-          className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-slate-900/20 active:scale-[0.98]"
-        >
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 bg-white rounded-full p-0.5" alt="Google" />
-          Continue with Google
-        </button>
+        <div className="space-y-3">
+          <button
+            onClick={handleLogin}
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-slate-900/20 active:scale-[0.98]"
+          >
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 bg-white rounded-full p-0.5" alt="Google" />
+            Continue with Google
+          </button>
+          
+          <button
+            onClick={() => {
+              localStorage.setItem("agri_guest_mode", "true");
+              window.location.reload();
+            }}
+            className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+          >
+            <User size={20} />
+            Continue as Guest (Test Mode)
+          </button>
+        </div>
 
         {errorMsg && (
           <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium flex items-start gap-3">

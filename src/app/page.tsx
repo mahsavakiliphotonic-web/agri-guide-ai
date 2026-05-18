@@ -157,7 +157,9 @@ export default function Home() {
   }, [messages]);
 
   // Auth Guard
-  if (loading) {
+  const isGuestMode = typeof window !== 'undefined' && localStorage.getItem("agri_guest_mode") === "true";
+
+  if (loading && !isGuestMode) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
@@ -165,7 +167,7 @@ export default function Home() {
     );
   }
 
-  if (!user) {
+  if (!user && !isGuestMode) {
     return <LoginView />;
   }
 
@@ -547,7 +549,10 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2">
             <button 
-              onClick={() => logout()}
+              onClick={() => {
+                localStorage.removeItem("agri_guest_mode");
+                logout();
+              }}
               className="p-2.5 text-slate-500 hover:text-red-500 hover:bg-red-50 bg-white rounded-xl shadow-sm border border-slate-200 transition-all"
               title="Logout"
             >

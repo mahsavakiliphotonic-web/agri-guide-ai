@@ -464,6 +464,18 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
           </div>
         ))}
 
+        {/* Logout Button */}
+        <button
+          onClick={() => {
+            localStorage.removeItem("agri_guest_mode");
+            logout();
+          }}
+          className="w-full flex items-center justify-center gap-2 p-5 bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 rounded-[2rem] font-black text-[14px] transition-all border border-red-100 dark:border-red-500/20"
+        >
+          <LogOut size={18} />
+          Log Out from AgriGuide
+        </button>
+
       </div>
 
       {/* Location Picker Modal */}
