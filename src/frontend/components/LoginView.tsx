@@ -8,13 +8,23 @@ import { LogIn, Sparkles, Sprout, ShieldCheck, Globe, AlertCircle, User } from "
 export const LoginView: React.FC = () => {
   const { loginWithGoogle } = useAuth();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const handleLogin = async () => {
     try {
       setErrorMsg(null);
+      setIsLoggingIn(true);
       await loginWithGoogle();
     } catch (error: any) {
-      setErrorMsg(error.message || "Login failed");
+      const code = error?.code || '';
+      // Don't show error if user simply closed the popup
+      if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') {
+        setErrorMsg(null);
+      } else {
+        setErrorMsg(`[${code}] ${error.message || "Login failed"}`);
+      }
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
@@ -72,10 +82,15 @@ export const LoginView: React.FC = () => {
         <div className="space-y-3">
           <button
             onClick={handleLogin}
-            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-slate-900/20 active:scale-[0.98]"
+            disabled={isLoggingIn}
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-slate-900/20 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait"
           >
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 bg-white rounded-full p-0.5" alt="Google" />
-            Continue with Google
+            {isLoggingIn ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 bg-white rounded-full p-0.5" alt="Google" />
+            )}
+            {isLoggingIn ? "Signing in..." : "Continue with Google"}
           </button>
           
           <button
