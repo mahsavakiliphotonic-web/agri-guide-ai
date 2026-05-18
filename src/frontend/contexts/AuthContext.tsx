@@ -3,7 +3,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   onAuthStateChanged, 
-  signInWithPopup, 
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider, 
   signOut, 
   User,
@@ -38,16 +40,42 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
+  // Handle redirect result on page load (for mobile login)
+  useEffect(() => {
+    getRedirectResult(auth).then((result) => {
+      if (result?.user) {
+        setUser(result.user);
+      }
+    }).catch((error) => {
+      console.error("Redirect login error:", error);
+    });
+  }, []);
+
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({
       prompt: 'select_account'
     });
+    
+    // Check if mobile/tablet
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("Google login failed:", error);
-      throw error;
+      if (isMobile) {
+        // Use redirect on mobile - more reliable, no popup blocking
+        await signInWithRedirect(auth, provider);
+      } else {
+        // Use popup on desktop
+        await signInWithPopup(auth, provider);
+      }
+    } catch (error: any) {
+      // If popup fails (e.g. blocked), fall back to redirect
+      if (error.code === 'auth/popup-blocked' || error.code === 'auth/popup-closed-by-user') {
+        await signInWithRedirect(auth, provider);
+      } else {
+        console.error("Google login failed:", error);
+        throw error;
+      }
     }
   };
 
