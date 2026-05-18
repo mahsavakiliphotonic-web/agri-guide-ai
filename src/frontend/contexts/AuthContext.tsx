@@ -3,14 +3,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   onAuthStateChanged, 
-  signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider, 
   signOut, 
   User,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
 } from "firebase/auth";
 import { auth } from "@/backend/config/firebase";
 
@@ -40,14 +37,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  // Handle redirect result on page load (for mobile login)
+  // Handle redirect result when user comes back from Google
   useEffect(() => {
-    getRedirectResult(auth).then((result) => {
-      if (result?.user) {
-        setUser(result.user);
-      }
-    }).catch((error) => {
-      console.error("Redirect login error:", error);
+    getRedirectResult(auth).catch((error) => {
+      console.error("Redirect result error:", error);
     });
   }, []);
 
@@ -56,31 +49,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     provider.setCustomParameters({
       prompt: 'select_account'
     });
-    
-    // Check if mobile/tablet
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    try {
-      if (isMobile) {
-        // Use redirect on mobile - more reliable, no popup blocking
-        await signInWithRedirect(auth, provider);
-      } else {
-        // Use popup on desktop
-        await signInWithPopup(auth, provider);
-      }
-    } catch (error: any) {
-      // If popup fails (e.g. blocked), fall back to redirect
-      if (error.code === 'auth/popup-blocked' || error.code === 'auth/popup-closed-by-user') {
-        await signInWithRedirect(auth, provider);
-      } else {
-        console.error("Google login failed:", error);
-        throw error;
-      }
-    }
+    // Always use redirect - it's the most reliable method
+    await signInWithRedirect(auth, provider);
   };
 
   const logout = async () => {
     try {
+      localStorage.removeItem("agri_guest_mode");
       await signOut(auth);
     } catch (error) {
       console.error("Logout failed:", error);
