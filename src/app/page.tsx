@@ -529,16 +529,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Prominent New Chat Button (Desktop Sidebar) */}
-        <div className="hidden lg:block mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
-          <button 
-            onClick={() => createNewCase()}
-            className="w-full flex items-center justify-center gap-3 py-4 rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 text-white font-black shadow-xl shadow-slate-900/20 hover:shadow-emerald-500/20 hover:from-emerald-600 hover:to-teal-700 transition-all duration-500 group active:scale-95"
-          >
-            <Plus size={20} className="group-hover:rotate-90 transition-transform duration-500" />
-            New Consultation
-          </button>
-        </div>
       </nav>
       )}
 
