@@ -111,18 +111,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
 
-  // Auth Guard
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <LoginView />;
-  }
   const [cases, setCases] = useState<Case[]>([]);
   const [currentCaseId, setCurrentCaseId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
@@ -167,6 +155,19 @@ export default function Home() {
       ));
     }
   }, [messages]);
+
+  // Auth Guard
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginView />;
+  }
 
   const createNewCase = (name: string = "New Consultation") => {
     const newId = Date.now().toString();

@@ -1,12 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { motion } from "framer-motion";
-import { LogIn, Sparkles, Sprout, ShieldCheck, Globe } from "lucide-react";
+import { LogIn, Sparkles, Sprout, ShieldCheck, Globe, AlertCircle } from "lucide-react";
 
 export const LoginView: React.FC = () => {
   const { loginWithGoogle } = useAuth();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const handleLogin = async () => {
+    try {
+      setErrorMsg(null);
+      await loginWithGoogle();
+    } catch (error: any) {
+      setErrorMsg(error.message || "Login failed");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 relative overflow-hidden p-6 font-inter">
@@ -60,12 +70,19 @@ export const LoginView: React.FC = () => {
         </div>
 
         <button
-          onClick={loginWithGoogle}
+          onClick={handleLogin}
           className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-slate-900/20 active:scale-[0.98]"
         >
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 bg-white rounded-full p-0.5" alt="Google" />
           Continue with Google
         </button>
+
+        {errorMsg && (
+          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium flex items-start gap-3">
+            <AlertCircle size={18} className="shrink-0 mt-0.5" />
+            <span className="break-words">{errorMsg}</span>
+          </div>
+        )}
 
         <p className="text-center text-slate-400 text-xs mt-8">
           By continuing, you agree to AgriGuide Terms of Service.
