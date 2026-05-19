@@ -27,7 +27,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [authStateLoading, setAuthStateLoading] = useState(true);
   const [isRedirectProcessing, setIsRedirectProcessing] = useState(true);
 
   // Handle redirect result when user comes back from Google
@@ -49,12 +49,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
-      if (!isRedirectProcessing) {
-        setLoading(false);
-      }
+      setAuthStateLoading(false);
     });
     return () => unsubscribe();
-  }, [isRedirectProcessing]);
+  }, []);
+
+  const loading = authStateLoading || isRedirectProcessing;
 
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
