@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   onAuthStateChanged, 
+  signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider, 
@@ -61,8 +62,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     provider.setCustomParameters({
       prompt: 'select_account'
     });
-    // Always use redirect - it's the most reliable method
-    await signInWithRedirect(auth, provider);
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error: any) {
+      console.warn("Popup blocked or failed, falling back to redirect:", error);
+      await signInWithRedirect(auth, provider);
+    }
   };
 
   const logout = async () => {
