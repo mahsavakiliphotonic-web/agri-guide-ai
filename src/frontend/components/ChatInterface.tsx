@@ -126,7 +126,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
         ref={scrollRef}
         className="flex-1 overflow-y-auto px-4 md:px-8 scrollbar-hide"
       >
-        <div className="max-w-4xl mx-auto py-6 space-y-6 w-full">
+        <div className="w-full py-6 space-y-6">
           <AnimatePresence initial={false}>
             {messages.map((msg, idx) => (
               <motion.div
@@ -139,24 +139,24 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
                 )}
               >
                 <div className={cn(
-                  "w-8 h-8 rounded-xl flex items-center justify-center shadow-md shrink-0 mb-1",
+                  "w-10 h-10 rounded-xl flex items-center justify-center shadow-md shrink-0 mb-1",
                   msg.role === "user" ? "bg-slate-900 text-white" : "bg-emerald-100 text-emerald-700"
                 )}>
-                  {msg.role === "user" ? <User size={16} /> : <Bot size={16} />}
+                  {msg.role === "user" ? <User size={18} /> : <Bot size={18} />}
                 </div>
                 
                 <div className={cn(
-                  "max-w-[85%] sm:max-w-[70%] px-5 py-3.5 text-[15px] leading-relaxed shadow-sm",
+                  "max-w-[85%] sm:max-w-[80%] px-6 py-4.5 text-[17px] md:text-[19px] lg:text-[20px] leading-relaxed shadow-md font-medium",
                   msg.role === "user" 
-                    ? "bg-emerald-600 text-white rounded-[1.5rem] rounded-br-none" 
-                    : "bg-white text-slate-800 border border-slate-100 rounded-[1.5rem] rounded-bl-none"
+                    ? "bg-emerald-600 text-white rounded-[1.8rem] rounded-br-none" 
+                    : "bg-white text-slate-800 border border-slate-200/80 rounded-[1.8rem] rounded-bl-none"
                 )}>
                   {msg.image && (
-                    <div className="mb-3 rounded-xl overflow-hidden border border-white/20 shadow-md">
-                      <img src={msg.image} className="w-full max-h-72 object-cover" alt="Analysis" />
+                    <div className="mb-4 rounded-2xl overflow-hidden border border-slate-200/60 shadow-lg bg-slate-50">
+                      <img src={msg.image} className="w-full max-h-[480px] object-contain rounded-xl" alt="Analysis" />
                     </div>
                   )}
-                  <div className="prose prose-sm max-w-none text-inherit">
+                  <div className="prose prose-base md:prose-lg lg:prose-xl max-w-none text-inherit font-medium leading-relaxed">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                 </div>
@@ -168,9 +168,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex items-center gap-2 text-emerald-600/50 font-black uppercase tracking-[0.2em] text-[9px] pl-11"
+              className="flex items-center gap-2 text-emerald-600/60 font-black uppercase tracking-[0.2em] text-[10px] pl-13"
             >
-              <Loader2 size={12} className="animate-spin" />
+              <Loader2 size={14} className="animate-spin" />
               AI is thinking
             </motion.div>
           )}
@@ -179,7 +179,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
 
       {/* Input Section */}
       <div className="p-4 md:p-6 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full">
           {imagePreview && (
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
