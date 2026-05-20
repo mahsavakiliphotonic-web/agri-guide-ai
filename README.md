@@ -84,8 +84,13 @@ Access the live application here: [**AgriGuide AI Live App**](https://agri-guide
 ### 2. Authentication
 The application uses **Firebase Authentication**.
 - **Login Requirement:** Access to the application requires a **Google (Gmail) account**. Please use the "Continue with Google" button on the login screen. Other login methods (like email/password) are intentionally disabled for a streamlined and secure experience.
-<img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/5fc5bd84-870d-4dbc-8528-10d54b2d906d" />
-<img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" />
+
+-<table>
+  <tr>
+    <td><img width="100" height="200" alt="image" src="https://github.com/user-attachments/assets/0c68b609-1b25-4c84-918b-9077ae141996" /></td>
+    <td><img width="100" height="200" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" /></td>
+  </tr>
+</table>
 
 ### 3. Mobile Experience
 For the best experience, open the URL on a mobile device and use the "Add to Home Screen" feature to install it as a native-feeling app.
