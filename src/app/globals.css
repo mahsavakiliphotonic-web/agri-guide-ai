@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #f8fafc;
@@ -106,6 +107,8 @@
 
 /* Hardcoded Tailwind overrides for Dark Mode */
 .dark .bg-slate-50 { background-color: #0f172a !important; }
+.dark .bg-slate-100 { background-color: #334155 !important; }
+.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.1) !important; }
 .dark .bg-white { background-color: #1e293b !important; border-color: #334155 !important; }
 .dark .bg-white\/80 { background-color: rgba(30, 41, 59, 0.8) !important; }
 .dark .bg-white\/50 { background-color: rgba(30, 41, 59, 0.5) !important; }
@@ -113,6 +116,7 @@
 .dark .text-slate-600 { color: #cbd5e1 !important; }
 .dark .text-slate-500 { color: #94a3b8 !important; }
 .dark .text-slate-400 { color: #64748b !important; }
+.dark .border-slate-50 { border-color: #334155 !important; }
 .dark .border-slate-100 { border-color: #334155 !important; }
 .dark .border-slate-200 { border-color: #475569 !important; }
 .dark .border-slate-200\/50 { border-color: rgba(71, 85, 105, 0.5) !important; }
