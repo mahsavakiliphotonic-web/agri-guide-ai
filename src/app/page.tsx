@@ -352,7 +352,20 @@ export default function Home() {
     const userMessage: Message = { 
       id: userMsgId, 
       role: "user", 
-      content: text || (settings.language === "Persian" ? "درخواست بررسی گیاه" : "Plant Inquiry"),
+      content: text || (() => {
+        const lang = settings.language;
+        if (lang === "Persian") return "درخواست بررسی گیاه";
+        if (lang === "Finnish") return "Kasvianalyysipyyntö";
+        if (lang === "Spanish") return "Solicitud de diagnóstico de planta";
+        if (lang === "French") return "Demande de diagnostic de plante";
+        if (lang === "German") return "Pflanzenanalyse-Anfrage";
+        if (lang === "Arabic") return "طلب فحص النبات";
+        if (lang === "Hindi") return "पौधे की जांच का अनुरोध";
+        if (lang === "Russian") return "Запрос на диагностику растения";
+        if (lang === "Chinese") return "植物诊断请求";
+        if (lang === "Japanese") return "植物診断リクエスト";
+        return "Plant Inquiry";
+      })(),
       image: imagePreviewUrl
     };
 
