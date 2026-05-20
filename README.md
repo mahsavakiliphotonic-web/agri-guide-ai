@@ -40,14 +40,6 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 | **Persistence** | Browser LocalStorage | Secure, privacy-focused client-side storage |
 | **Backend** | Node.js | Fast API execution and server-side processing |
 
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/3ea8cc2b-ccae-4563-a1a1-39ae6cb71287" />
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/c796ba2f-ad7a-4a07-bf6d-d4f316282d34" />
-
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/80f95dc7-f866-4207-92dc-c64a4f8feaaf" />
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/a87a21d1-2698-4617-b359-364a3d62e5f0" />
-
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/44428bf7-a11c-4e7f-93c8-0f478a478384" />
-<img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/e7bda0ac-36d5-4e66-88d1-d05fc8795fb2" />
 
 ---
 
@@ -62,21 +54,21 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 
 <table>
   <tr>
-    <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/3ea8cc2b-ccae-4563-a1a1-39ae6cb71287" /></td>
+    <td><img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/3ea8cc2b-ccae-4563-a1a1-39ae6cb71287" /></td>
     <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/c796ba2f-ad7a-4a07-bf6d-d4f316282d34" /></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/80f95dc7-f866-4207-92dc-c64a4f8feaaf" /></td>
+    <td><img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/80f95dc7-f866-4207-92dc-c64a4f8feaaf" /></td>
     <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/a87a21d1-2698-4617-b359-364a3d62e5f0" /></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/44428bf7-a11c-4e7f-93c8-0f478a478384" /></td>
+    <td><img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/44428bf7-a11c-4e7f-93c8-0f478a478384" /></td>
     <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/e7bda0ac-36d5-4e66-88d1-d05fc8795fb2" /></td>
   </tr>
 </table>
