@@ -354,7 +354,7 @@ export default function Home() {
       role: "user", 
       content: text || (() => {
         const lang = settings.language;
-        if (lang === "Persian") return "درخواست بررسی گیاه";
+        if (lang === "Persian") return "تشخیص مشکل گیاه";
         if (lang === "Finnish") return "Kasvianalyysipyyntö";
         if (lang === "Spanish") return "Solicitud de diagnóstico de planta";
         if (lang === "French") return "Demande de diagnostic de plante";
