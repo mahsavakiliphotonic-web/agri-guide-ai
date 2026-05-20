@@ -2,8 +2,6 @@
 
 AgriGuide AI is a cutting-edge, mobile-first web application designed to empower farmers with instant, scientifically-backed plant health diagnoses. By combining **Multimodal AI Vision** with **Retrieval-Augmented Generation (RAG)**, the system provides a seamless experience from capturing a photo in the field to receiving expert treatment advice derived from verified agricultural manuals.
 
-![App Dashboard Placeholder](/api/placeholder/800/450)
-
 ---
 
 ## ✨ Key Features
