@@ -384,11 +384,11 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
   return (
     <div className="flex flex-col h-full bg-transparent overflow-hidden">
       {/* Header */}
-      <div className="p-6 bg-white/50 backdrop-blur-md border-b border-slate-200/50">
-        <h2 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-3">
+      <div className="p-6 bg-white/50 dark:bg-slate-900/40 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
+        <h2 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-3">
           Settings
         </h2>
-        <p className="text-sm text-slate-500 font-medium mt-1">Configure your farm profile and app experience.</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">Configure your farm profile and app experience.</p>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-8 pb-24">
@@ -411,9 +411,9 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
           <div key={idx} className="space-y-4">
             <div className="flex items-center gap-2 px-2">
               {section.icon}
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">{section.title}</h4>
+              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">{section.title}</h4>
             </div>
-            <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-slate-800/60 rounded-[2rem] border border-slate-100 dark:border-slate-700/50 shadow-sm overflow-hidden">
               {section.items.map((item, i) => (
                 <div 
                   key={i}
@@ -425,14 +425,14 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
                     }
                   }}
                   className={cn(
-                    "flex items-center justify-between p-5 hover:bg-slate-50 active:bg-slate-100 transition-colors",
+                    "flex items-center justify-between p-5 hover:bg-slate-50 dark:hover:bg-slate-700/30 active:bg-slate-100 dark:active:bg-slate-700/50 transition-colors",
                     !item.isSelect && "cursor-pointer",
-                    i !== section.items.length - 1 && "border-b border-slate-50"
+                    i !== section.items.length - 1 && "border-b border-slate-50 dark:border-slate-700/50"
                   )}
                 >
                   <div className="flex flex-col">
-                    <span className="text-[14px] font-bold text-slate-800">{item.label}</span>
-                    {item.sub && <span className="text-[11px] text-slate-400 font-medium">{item.sub}</span>}
+                    <span className="text-[14px] font-bold text-slate-800 dark:text-slate-200">{item.label}</span>
+                    {item.sub && <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">{item.sub}</span>}
                   </div>
                   <div className="flex items-center gap-2">
                     {item.isSelect ? (
@@ -440,23 +440,27 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
                         value={item.value}
                         onClick={(e) => e.stopPropagation()}
                         onChange={(e) => onUpdateSettings({ [item.key]: e.target.value })}
-                        className="bg-slate-100 text-slate-600 text-[12px] font-black px-3 py-1 rounded-full outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer appearance-none text-right pr-6"
+                        className="bg-slate-100 dark:bg-slate-750 text-slate-600 dark:text-slate-200 text-[12px] font-black px-3 py-1.5 rounded-full outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer appearance-none text-right pr-6 border border-transparent dark:border-slate-600/40"
                         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundPosition: 'right 0.5rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1em 1em' }}
                       >
-                        {!item.value && <option value="" disabled>Select {item.label}</option>}
-                        {item.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                        {!item.value && <option value="" disabled className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">Select {item.label}</option>}
+                        {item.options?.map(opt => (
+                          <option key={opt} value={opt} className="bg-white dark:bg-slate-850 text-slate-800 dark:text-slate-100">
+                            {opt}
+                          </option>
+                        ))}
                       </select>
                     ) : (
                       <span className={cn(
                         "text-[12px] font-black px-3 py-1 rounded-full transition-colors",
                         item.isToggle && (item.value.includes("En") || item.value === "On")
-                          ? "bg-emerald-100 text-emerald-700" 
-                          : "bg-slate-100 text-slate-600"
+                          ? "bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400" 
+                          : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
                       )}>
                         {item.value}
                       </span>
                     )}
-                    {!item.isSelect && <ChevronRight size={16} className="text-slate-300" />}
+                    {!item.isSelect && <ChevronRight size={16} className="text-slate-300 dark:text-slate-600" />}
                   </div>
                 </div>
               ))}
