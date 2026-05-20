@@ -55,14 +55,14 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 <table>
   <tr>
     <td><img width="1912" height="797" alt="image" src="https://github.com/user-attachments/assets/4698ff7a-0b7c-4d08-85be-f30b25931547" /></td>
-    <td><img width="1907" height="786" alt="image" src="https://github.com/user-attachments/assets/f2463aa7-7575-4803-a58f-cedf888294f3" /></td>
+    <td><img width="1903" height="790" alt="image" src="https://github.com/user-attachments/assets/3dc39bb9-b5c2-498f-be13-7bcbd086e0be" /></td>
   </tr>
 </table>
 
 <table>
   <tr>
     <td><img width="1915" height="792" alt="image" src="https://github.com/user-attachments/assets/1e09bf6a-a5ea-4518-8c1c-d21b30f86939" /></td>
-    <td><img width="1887" height="727" alt="image" src="https://github.com/user-attachments/assets/ee2b8321-ab35-454f-9ee8-caa48df9231a" /></td>
+    <td><img width="1913" height="788" alt="image" src="https://github.com/user-attachments/assets/e11b7404-09fd-4123-b154-ccea19c08e33" /></td>
   </tr>
 </table>
 
