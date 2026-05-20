@@ -54,15 +54,15 @@ AgriGuide AI is a cutting-edge, mobile-first web application designed to empower
 
 <table>
   <tr>
-    <td><img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/3ea8cc2b-ccae-4563-a1a1-39ae6cb71287" /></td>
-    <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/c796ba2f-ad7a-4a07-bf6d-d4f316282d34" /></td>
+    <td><img width="1912" height="797" alt="image" src="https://github.com/user-attachments/assets/4698ff7a-0b7c-4d08-85be-f30b25931547" /></td>
+    <td><img width="1913" height="793" alt="image" src="https://github.com/user-attachments/assets/2659d629-6584-4acf-8054-514184eff6f2" /></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td><img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/80f95dc7-f866-4207-92dc-c64a4f8feaaf" /></td>
-    <td><img width="975" height="436" alt="image" src="https://github.com/user-attachments/assets/a87a21d1-2698-4617-b359-364a3d62e5f0" /></td>
+    <td><img width="1915" height="792" alt="image" src="https://github.com/user-attachments/assets/1e09bf6a-a5ea-4518-8c1c-d21b30f86939" /></td>
+    <td><img width="1907" height="792" alt="image" src="https://github.com/user-attachments/assets/49d94cd9-fb9c-4799-8ede-e0c636e77e2b" /></td>
   </tr>
 </table>
 
