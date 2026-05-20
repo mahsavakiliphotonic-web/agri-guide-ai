@@ -87,17 +87,17 @@ The application uses **Firebase Authentication**.
 
 -<table>
   <tr>
-    <td><img width="100" height="200" alt="image" src="https://github.com/user-attachments/assets/0c68b609-1b25-4c84-918b-9077ae141996" /></td>
-    <td><img width="100" height="200" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" /></td>
+    <td><img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/0c68b609-1b25-4c84-918b-9077ae141996" /></td>
+    <td><img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" /></td>
   </tr>
 </table>
 
 ### 3. Mobile Experience
 For the best experience, open the URL on a mobile device and use the "Add to Home Screen" feature to install it as a native-feeling app.
-<img width="400" height="200" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM" src="https://github.com/user-attachments/assets/7900d2d4-cbfd-466a-9010-3b6bbd64dcd2" />
-<img width="400" height="200" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM (1)" src="https://github.com/user-attachments/assets/7777c586-15f6-4cb1-862e-4f18abee3a26" />
-<img width="400" height="200" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM (2)" src="https://github.com/user-attachments/assets/451394fc-0113-455f-8082-b5b214530677" />
-<img width="400" height="200" alt="WhatsApp Image 2026-05-20 at 9 38 57 AM" src="https://github.com/user-attachments/assets/cd4f85b5-c717-40a0-8836-a7b4ef4636c8" />
+<img width="200" height="400" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM" src="https://github.com/user-attachments/assets/7900d2d4-cbfd-466a-9010-3b6bbd64dcd2" />
+<img width="200" height="400" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM (1)" src="https://github.com/user-attachments/assets/7777c586-15f6-4cb1-862e-4f18abee3a26" />
+<img width="200" height="400" alt="WhatsApp Image 2026-05-20 at 9 38 56 AM (2)" src="https://github.com/user-attachments/assets/451394fc-0113-455f-8082-b5b214530677" />
+<img width="200" height="400" alt="WhatsApp Image 2026-05-20 at 9 38 57 AM" src="https://github.com/user-attachments/assets/cd4f85b5-c717-40a0-8836-a7b4ef4636c8" />
 
 ---
 *Developed as a Final Project for the AI in Practice Program - 2026*
