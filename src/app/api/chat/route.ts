@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       let ragAnswer = "";
       if (diagnosis && diagnosis.disease && diagnosis.disease !== "unknown") {
         ragAnswer = await queryKnowledgeBase(
-          `${query}. The plant appears to be ${diagnosis.species} with ${diagnosis.disease}.`,
+          diagnosis.treatment_query || diagnosis.disease,
           preferredLanguage
         );
       } else {
@@ -37,9 +37,39 @@ export async function POST(req: NextRequest) {
       // Combine vision diagnosis + RAG answer
       let answer = "";
       if (diagnosis) {
-        answer += `**🌿 Plant:** ${diagnosis.species}\n`;
-        answer += `**🔬 Diagnosis:** ${diagnosis.disease}\n`;
-        answer += `**⚠️ Urgency:** ${diagnosis.urgency}\n\n`;
+        const labels: Record<string, { plant: string; diagnosis: string; urgency: string }> = {
+          "Persian": { plant: "گیاه", diagnosis: "تشخیص بیماری", urgency: "میزان اضطرار" },
+          "Finnish": { plant: "Kasvi", diagnosis: "Diagnoosi", urgency: "Kiireellisyys" },
+          "Spanish": { plant: "Planta", diagnosis: "Diagnóstico", urgency: "Urgencia" },
+          "French": { plant: "Plante", diagnosis: "Diagnostic", urgency: "Urgence" },
+          "German": { plant: "Pflanze", diagnosis: "Diagnose", urgency: "Dringlichkeit" },
+          "Arabic": { plant: "النبات", diagnosis: "التشخيص", urgency: "حالة الاستعجال" },
+          "Hindi": { plant: "पौधा", diagnosis: "रोग का निदान", urgency: "तात्कालिकता" },
+          "Russian": { plant: "Растение", diagnosis: "Диагноз", urgency: "Срочность" },
+          "Chinese": { plant: "植物", diagnosis: "诊断结果", urgency: "紧急程度" },
+          "Japanese": { plant: "植物", diagnosis: "診断", urgency: "緊急度" },
+        };
+        
+        const l = labels[preferredLanguage] || { plant: "Plant", diagnosis: "Diagnosis", urgency: "Urgency" };
+        
+        let urgencyStr = diagnosis.urgency || "High";
+        if (preferredLanguage === "Persian") {
+          if (urgencyStr.toLowerCase().includes("high")) urgencyStr = "بالا";
+          else if (urgencyStr.toLowerCase().includes("med")) urgencyStr = "متوسط";
+          else if (urgencyStr.toLowerCase().includes("low")) urgencyStr = "کم";
+        } else if (preferredLanguage === "Finnish") {
+          if (urgencyStr.toLowerCase().includes("high")) urgencyStr = "Korkea";
+          else if (urgencyStr.toLowerCase().includes("med")) urgencyStr = "Keskitaso";
+          else if (urgencyStr.toLowerCase().includes("low")) urgencyStr = "Matala";
+        } else if (preferredLanguage === "Spanish") {
+          if (urgencyStr.toLowerCase().includes("high")) urgencyStr = "Alta";
+          else if (urgencyStr.toLowerCase().includes("med")) urgencyStr = "Media";
+          else if (urgencyStr.toLowerCase().includes("low")) urgencyStr = "Baja";
+        }
+
+        answer += `**🌿 ${l.plant}:** ${diagnosis.species}\n`;
+        answer += `**🔬 ${l.diagnosis}:** ${diagnosis.disease}\n`;
+        answer += `**⚠️ ${l.urgency}:** ${urgencyStr}\n\n`;
       }
       answer += ragAnswer;
 

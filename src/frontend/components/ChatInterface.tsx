@@ -156,9 +156,20 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
                       <img src={msg.image} className="w-full max-h-[480px] object-contain rounded-xl" alt="Analysis" />
                     </div>
                   )}
-                  <div className="prose prose-base md:prose-lg lg:prose-xl max-w-none text-inherit font-medium leading-relaxed">
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
-                  </div>
+                  {(() => {
+                    const isRtl = /[\u0600-\u06FF\u0750-\u077F]/.test(msg.content);
+                    return (
+                      <div 
+                        dir={isRtl ? "rtl" : "ltr"}
+                        className={cn(
+                          "prose prose-base md:prose-lg lg:prose-xl max-w-none text-inherit font-medium leading-relaxed",
+                          isRtl ? "text-right" : "text-left"
+                        )}
+                      >
+                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                      </div>
+                    );
+                  })()}
                 </div>
               </motion.div>
             ))}
