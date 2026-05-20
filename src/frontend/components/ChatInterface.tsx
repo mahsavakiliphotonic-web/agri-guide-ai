@@ -124,55 +124,57 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onSendMe
       {/* Messages Area */}
       <div 
         ref={scrollRef}
-        className="flex-1 overflow-y-auto px-4 md:px-8 py-6 space-y-6 scrollbar-hide"
+        className="flex-1 overflow-y-auto px-4 md:px-8 scrollbar-hide"
       >
-        <AnimatePresence initial={false}>
-          {messages.map((msg, idx) => (
-            <motion.div
-              key={msg.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={cn(
-                "flex items-end gap-3",
-                msg.role === "user" ? "flex-row-reverse" : "flex-row"
-              )}
-            >
-              <div className={cn(
-                "w-8 h-8 rounded-xl flex items-center justify-center shadow-md shrink-0 mb-1",
-                msg.role === "user" ? "bg-slate-900 text-white" : "bg-emerald-100 text-emerald-700"
-              )}>
-                {msg.role === "user" ? <User size={16} /> : <Bot size={16} />}
-              </div>
-              
-              <div className={cn(
-                "max-w-[85%] sm:max-w-[70%] px-5 py-3.5 text-[15px] leading-relaxed shadow-sm",
-                msg.role === "user" 
-                  ? "bg-emerald-600 text-white rounded-[1.5rem] rounded-br-none" 
-                  : "bg-white text-slate-800 border border-slate-100 rounded-[1.5rem] rounded-bl-none"
-              )}>
-                {msg.image && (
-                  <div className="mb-3 rounded-xl overflow-hidden border border-white/20 shadow-md">
-                    <img src={msg.image} className="w-full max-h-72 object-cover" alt="Analysis" />
-                  </div>
+        <div className="max-w-4xl mx-auto py-6 space-y-6 w-full">
+          <AnimatePresence initial={false}>
+            {messages.map((msg, idx) => (
+              <motion.div
+                key={msg.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={cn(
+                  "flex items-end gap-3",
+                  msg.role === "user" ? "flex-row-reverse" : "flex-row"
                 )}
-                <div className="prose prose-sm max-w-none text-inherit">
-                  <ReactMarkdown>{msg.content}</ReactMarkdown>
+              >
+                <div className={cn(
+                  "w-8 h-8 rounded-xl flex items-center justify-center shadow-md shrink-0 mb-1",
+                  msg.role === "user" ? "bg-slate-900 text-white" : "bg-emerald-100 text-emerald-700"
+                )}>
+                  {msg.role === "user" ? <User size={16} /> : <Bot size={16} />}
                 </div>
-              </div>
+                
+                <div className={cn(
+                  "max-w-[85%] sm:max-w-[70%] px-5 py-3.5 text-[15px] leading-relaxed shadow-sm",
+                  msg.role === "user" 
+                    ? "bg-emerald-600 text-white rounded-[1.5rem] rounded-br-none" 
+                    : "bg-white text-slate-800 border border-slate-100 rounded-[1.5rem] rounded-bl-none"
+                )}>
+                  {msg.image && (
+                    <div className="mb-3 rounded-xl overflow-hidden border border-white/20 shadow-md">
+                      <img src={msg.image} className="w-full max-h-72 object-cover" alt="Analysis" />
+                    </div>
+                  )}
+                  <div className="prose prose-sm max-w-none text-inherit">
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center gap-2 text-emerald-600/50 font-black uppercase tracking-[0.2em] text-[9px] pl-11"
+            >
+              <Loader2 size={12} className="animate-spin" />
+              AI is thinking
             </motion.div>
-          ))}
-        </AnimatePresence>
-        
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex items-center gap-2 text-emerald-600/50 font-black uppercase tracking-[0.2em] text-[9px] pl-11"
-          >
-            <Loader2 size={12} className="animate-spin" />
-            AI is thinking
-          </motion.div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Input Section */}
