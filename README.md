@@ -87,8 +87,8 @@ The application uses **Firebase Authentication**.
 
 -<table>
   <tr>
-    <td><img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/0c68b609-1b25-4c84-918b-9077ae141996" /></td>
-    <td><img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" /></td>
+    <td><img width="273" height="482" alt="image" src="https://github.com/user-attachments/assets/aade9965-d3c6-4a32-8924-f891ac351371" /></td>
+    <td><img width="273" height="482" alt="image" src="https://github.com/user-attachments/assets/253c868f-66bb-4ef1-9d53-0384b3848e76" /></td>
   </tr>
 </table>
 
